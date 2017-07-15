@@ -1,0 +1,9 @@
+*.swp
+*.cmd
+.tmp_versions
+*.symvers
+*.order
+*.ko
+*.o
+symbols
+sickpy.mod.c
