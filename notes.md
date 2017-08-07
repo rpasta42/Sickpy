@@ -32,10 +32,33 @@ Minor number is used by device driver to distinguish between the various hardwar
    - if s, then it's block device (sdb)
    - if c, then character device (serial port)
 
+
+#### Making new nodes
+
+- `mknod /dev/coffee c 12 2`
+   - 1st arg: path
+   - 2nd arg: character or block
+   - 3/4 arg: major/minor
+
+
+`int register_chrdev(unsigned int major, const char *name, struct file_operations *fops);`
+-
+#### Implementing device
+
+- `file_operations` structure in `cat linux/fs.h` holds pointers to functions defined by the drive that perform various operations on the device.
+- Some operations are not implemented by a driver. For example, a driver that handles a video card won't need to read from a directory structure. The corresponding entries in the file_operations structure should be set to NULL.
+
+
 ### Memory allocation
 
 ```C
 void *vmalloc(unsigned long size);
 void vfree(void * addr);
 ```
+
+### Module info
+`modinfo sickpy.ko` -info for module file
+`lsmod` - list modules
+`insmod` - insert module
+`modprobe` - insert with deps
 

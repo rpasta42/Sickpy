@@ -6,4 +6,4 @@
 *.ko
 *.o
 symbols
-sickpy.mod.c
+*.mod.c

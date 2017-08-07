@@ -1,10 +1,20 @@
-fname=sickpy
+
+#sickpy
+fname=chardev
 obj-m += $(fname).o
+
+msg=dmesg >/tmp/dmesg; tail /tmp/dmesg
 
 all: test
 
 test: build
-	sudo insmod $(fname).ko; dmesg >/tmp/dmesg; tail /tmp/dmesg; sudo rmmod $(fname).ko
+	make load; make unload
+
+load:
+	sudo insmod $(fname).ko; $(msg)
+
+unload:
+	sudo rmmod $(fname).ko; $(msg)
 
 
 build:
